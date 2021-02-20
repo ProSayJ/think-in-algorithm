@@ -93,13 +93,12 @@ var heightEntry;
 var sizeButton;
 
 
-
 function returnSubmit(field, funct, maxsize, intOnly) {
 
     if (maxsize != undefined) {
         field.size = maxsize;
     }
-    return function(event) {
+    return function (event) {
         var keyASCII = 0;
         if (window.event) // IE
         {
@@ -115,9 +114,7 @@ function returnSubmit(field, funct, maxsize, intOnly) {
         } else if (keyASCII == 59 || keyASCII == 45 || keyASCII == 46 || keyASCII == 190 || keyASCII == 173) {
             return false;
         } else if (maxsize != undefined && field.value.length >= maxsize ||
-            intOnly && (keyASCII < 48 || keyASCII > 57))
-
-        {
+            intOnly && (keyASCII < 48 || keyASCII > 57)) {
             if (!controlKey(keyASCII))
                 return false;
         }
@@ -155,7 +152,6 @@ function animEnded() {
     objectManager.statusReport.setText("Animation Completed");
     objectManager.statusReport.setForegroundColor("#000000");
 }
-
 
 
 function anumUndoUnavailable() {
@@ -279,7 +275,6 @@ function initCanvas() {
     var controlBar = document.getElementById("GeneralAnimationControls");
 
 
-
     var newTable = document.createElement("table");
 
     var midLevel = document.createElement("tr");
@@ -289,19 +284,16 @@ function initCanvas() {
     newTable.appendChild(midLevel);
 
 
-
     midLevel = document.createElement("tr");
     bottomLevel = document.createElement("td");
     bottomLevel.align = "center";
-    var txtNode = document.createTextNode("Animation Speed【动画速度】");
+    var txtNode = document.createTextNode("Animation Speed");
     midLevel.appendChild(bottomLevel);
     bottomLevel.appendChild(txtNode);
     newTable.appendChild(midLevel);
 
 
-
     tableEntry.appendChild(newTable);
-
 
 
     //Append the element in page (in span).
@@ -319,10 +311,10 @@ function initCanvas() {
     $(element).slider({
         animate: true,
         value: speed,
-        change: function(e, ui) {
+        change: function (e, ui) {
             setCookie("VisualizationSpeed", String(ui.value), 30);
         },
-        slide: function(e, ui) {
+        slide: function (e, ui) {
             animationManager.SetSpeed(ui.value);
         }
 
@@ -331,7 +323,6 @@ function initCanvas() {
     animationManager.SetSpeed(speed);
 
     element.setAttribute("style", "width:200px");
-
 
 
     var width = getCookie("VisualizationWidth");
@@ -357,7 +348,6 @@ function initCanvas() {
     canvas.height = height;
 
 
-
     tableEntry = document.createElement("td");
     txtNode = document.createTextNode(" w:");
     tableEntry.appendChild(txtNode);
@@ -377,7 +367,7 @@ function initCanvas() {
     heightEntry = addControlToAnimationBar("Text", canvas.height);
     heightEntry.onkeydown = this.returnSubmit(heightEntry, animationManager.changeSize.bind(animationManager), 4, true);
 
-    //	heightEntry.size = 4;
+    //heightEntry.size = 4;
     //sizeButton = addControlToAnimationBar("Button", "Change Canvas Size【更改画布大小】");
     sizeButton = addControlToAnimationBar("Button", "更改画布大小");
 
@@ -399,7 +389,6 @@ function initCanvas() {
 }
 
 
-
 function AnimationManager(objectManager) {
     // Holder for all animated objects.
     // All animation is done by manipulating objects in\
@@ -412,7 +401,7 @@ function AnimationManager(objectManager) {
     this.awaitingStep = false;
     this.currentlyAnimating = false;
 
-    // Array holding the code for the animation.  This is 
+    // Array holding the code for the animation.  This is
     // an array of strings, each of which is an animation command
     // currentAnimation is an index into this array
     this.AnimationSteps = [];
@@ -423,7 +412,7 @@ function AnimationManager(objectManager) {
     // Control variables for where we are in the current animation block.
     //  currFrame holds the frame number of the current animation block,
     //  while animationBlockLength holds the length of the current animation
-    //  block (in frame numbers).  
+    //  block (in frame numbers).
     this.currFrame = 0;
     this.animationBlockLength = 0;
 
@@ -431,7 +420,7 @@ function AnimationManager(objectManager) {
     this.currentBlock = null;
 
     /////////////////////////////////////
-    // Variables for handling undo. 
+    // Variables for handling undo.
     ////////////////////////////////////
     //  A stack of UndoBlock objects (subclassed, UndoBlock is an abstract base class)
     //  each of which can undo a single animation element
@@ -445,12 +434,12 @@ function AnimationManager(objectManager) {
 
     this.animationBlockLength = 10;
 
-    this.lerp = function(from, to, percent) {
+    this.lerp = function (from, to, percent) {
         return (to - from) * percent + from;
     }
 
     // Pause / unpause animation
-    this.SetPaused = function(pausedValue) {
+    this.SetPaused = function (pausedValue) {
         this.animationPaused = pausedValue;
         if (!this.animationPaused) {
             this.step();
@@ -458,19 +447,19 @@ function AnimationManager(objectManager) {
     }
 
     // Set the speed of the animation, from 0 (slow) to 100 (fast)
-    this.SetSpeed = function(newSpeed) {
+    this.SetSpeed = function (newSpeed) {
         this.animationBlockLength = Math.floor((100 - newSpeed) / 2);
     }
 
 
-    this.parseBool = function(str) {
+    this.parseBool = function (str) {
         var uppercase = str.toUpperCase();
         var returnVal = !(uppercase == "False" || uppercase == "f" || uppercase == " 0" || uppercase == "0" || uppercase == "");
         return returnVal;
 
     }
 
-    this.parseColor = function(clr) {
+    this.parseColor = function (clr) {
         if (clr.charAt(0) == "#") {
             return clr;
         } else if (clr.substring(0, 2) == "0x") {
@@ -479,7 +468,7 @@ function AnimationManager(objectManager) {
     }
 
 
-    this.changeSize = function() {
+    this.changeSize = function () {
 
         var width = parseInt(widthEntry.value);
         var height = parseInt(heightEntry.value);
@@ -499,13 +488,10 @@ function AnimationManager(objectManager) {
         heightEntry.value = canvas.height;
 
         this.animatedObjects.draw();
-        this.fireEvent("CanvasSizeChanged", {
-            width: canvas.width,
-            height: canvas.height
-        });
+        this.fireEvent("CanvasSizeChanged", {width: canvas.width, height: canvas.height});
     }
 
-    this.startNextBlock = function() {
+    this.startNextBlock = function () {
         this.awaitingStep = false;
         this.currentBlock = [];
         var undoBlock = []
@@ -593,7 +579,7 @@ function AnimationManager(objectManager) {
                         parseInt(nextCommand[3]), // w
                         parseInt(nextCommand[4]), // h
                         nextCommand[7], // xJustify
-                        nextCommand[8], // yJustify
+                        nextCommand[8],// yJustify
                         "#ffffff", // background color
                         "#000000"); // foreground color
                 } else {
@@ -602,7 +588,7 @@ function AnimationManager(objectManager) {
                         parseInt(nextCommand[3]), // w
                         parseInt(nextCommand[4]), // h
                         "center", // xJustify
-                        "center", // yJustify
+                        "center",// yJustify
                         "#ffffff", // background color
                         "#000000"); // foreground color
 
@@ -817,7 +803,7 @@ function AnimationManager(objectManager) {
                 undoBlock.push(new UndoSetHighlightIndex(id, oldIndex));
                 this.animatedObjects.setHighlightIndex(id, index);
             } else {
-                //			throw "Unknown command: " + nextCommand[0];					
+                //			throw "Unknown command: " + nextCommand[0];
             }
 
             this.currentAnimation = this.currentAnimation + 1;
@@ -838,7 +824,7 @@ function AnimationManager(objectManager) {
 
     //  Start a new animation.  The input parameter commands is an array of strings,
     //  which represents the animation to start
-    this.StartNewAnimation = function(commands) {
+    this.StartNewAnimation = function (commands) {
         clearTimeout(timer);
         if (this.AnimationSteps != null) {
             this.previousAnimationSteps.push(this.AnimationSteps);
@@ -860,7 +846,7 @@ function AnimationManager(objectManager) {
 
 
     // Step backwards one step.  A no-op if the animation is not currently paused
-    this.stepBack = function() {
+    this.stepBack = function () {
         if (this.awaitingStep && this.undoStack != null && this.undoStack.length != 0) {
             //  TODO:  Get events working correctly!
             this.fireEvent("AnimationStarted", "NoData");
@@ -887,7 +873,7 @@ function AnimationManager(objectManager) {
 
     }
     // Step forwards one step.  A no-op if the animation is not currently paused
-    this.step = function() {
+    this.step = function () {
         if (this.awaitingStep) {
             this.startNextBlock();
             this.fireEvent("AnimationStarted", "NoData");
@@ -901,7 +887,7 @@ function AnimationManager(objectManager) {
 
 
     /// WARNING:  Could be dangerous to call while an animation is running ...
-    this.clearHistory = function() {
+    this.clearHistory = function () {
         this.undoStack = [];
         this.undoAnimationStepIndices = null;
         this.previousAnimationSteps = [];
@@ -914,7 +900,7 @@ function AnimationManager(objectManager) {
 
     }
 
-    this.skipBack = function() {
+    this.skipBack = function () {
         var keepUndoing = this.undoAnimationStepIndices != null && this.undoAnimationStepIndices.length != 0;
         if (keepUndoing) {
             var i;
@@ -948,14 +934,14 @@ function AnimationManager(objectManager) {
         }
     }
 
-    this.resetAll = function() {
+    this.resetAll = function () {
         this.clearHistory();
         this.animatedObjects.clearAllObjects();
         this.animatedObjects.draw();
         clearTimeout(timer);
     }
 
-    this.skipForward = function() {
+    this.skipForward = function () {
         if (this.currentlyAnimating) {
             this.animatedObjects.runFast = true;
             while (this.AnimationSteps != null && this.currentAnimation < this.AnimationSteps.length) {
@@ -992,7 +978,7 @@ function AnimationManager(objectManager) {
     }
 
 
-    this.finishUndoBlock = function(undoBlock) {
+    this.finishUndoBlock = function (undoBlock) {
         for (var i = undoBlock.length - 1; i >= 0; i--) {
             undoBlock[i].undoInitialStep(this.animatedObjects);
 
@@ -1025,7 +1011,7 @@ function AnimationManager(objectManager) {
     }
 
 
-    this.undoLastBlock = function() {
+    this.undoLastBlock = function () {
 
         if (this.undoAnimationStepIndices.length == 0) {
 
@@ -1058,7 +1044,7 @@ function AnimationManager(objectManager) {
         }
 
     }
-    this.setLayer = function(shown, layers) {
+    this.setLayer = function (shown, layers) {
         this.animatedObjects.setLayer(shown, layers)
         // Drop in an extra draw call here, just in case we are not
         // in the middle of an update loop when this changes
@@ -1066,7 +1052,7 @@ function AnimationManager(objectManager) {
     }
 
 
-    this.setAllLayers = function(layers) {
+    this.setAllLayers = function (layers) {
         this.animatedObjects.setAllLayers(layers);
         // Drop in an extra draw call here, just in case we are not
         // in the middle of an update loop when this changes
@@ -1074,7 +1060,7 @@ function AnimationManager(objectManager) {
     }
 
 
-    this.update = function() {
+    this.update = function () {
 
         if (this.currentlyAnimating) {
             this.currFrame = this.currFrame + 1;
