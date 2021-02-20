@@ -1,4 +1,4 @@
-package prosayj.thinking.algorithm._01_introduction_to_algorithms;
+package prosayj.thinking.algorithm.basis._01_introduction_to_algorithms;
 /**
  * SelectionSort
  *
