@@ -196,13 +196,13 @@ function doStepBack() {
 function doPlayPause() {
     paused = !paused;
     if (paused) {
-        playPauseBackButton.setAttribute("value", "play");
+        playPauseBackButton.setAttribute("value", "play【播放】");
         if (skipBackButton.disabled == false) {
             stepBackButton.disabled = false;
         }
 
     } else {
-        playPauseBackButton.setAttribute("value", "pause");
+        playPauseBackButton.setAttribute("value", "pause【暂停】");
     }
     animationManager.SetPaused(paused);
 }
@@ -256,15 +256,15 @@ function initCanvas() {
     objectManager = new ObjectManager();
     animationManager = new AnimationManager(objectManager);
 
-    skipBackButton = addControlToAnimationBar("Button", "Skip Back");
+    skipBackButton = addControlToAnimationBar("Button", "Skip Back【向后跳】");
     skipBackButton.onclick = animationManager.skipBack.bind(animationManager);
-    stepBackButton = addControlToAnimationBar("Button", "Step Back");
+    stepBackButton = addControlToAnimationBar("Button", "Step Back【退后】");
     stepBackButton.onclick = animationManager.stepBack.bind(animationManager);
-    playPauseBackButton = addControlToAnimationBar("Button", "Pause");
+    playPauseBackButton = addControlToAnimationBar("Button", "Pause【暂停】");
     playPauseBackButton.onclick = doPlayPause;
-    stepForwardButton = addControlToAnimationBar("Button", "Step Forward");
+    stepForwardButton = addControlToAnimationBar("Button", "Step Forward【向前一步】");
     stepForwardButton.onclick = animationManager.step.bind(animationManager);
-    skipForwardButton = addControlToAnimationBar("Button", "Skip Forward");
+    skipForwardButton = addControlToAnimationBar("Button", "Skip Forward【向后一步】");
     skipForwardButton.onclick = animationManager.skipForward.bind(animationManager);
 
 
@@ -293,7 +293,7 @@ function initCanvas() {
     midLevel = document.createElement("tr");
     bottomLevel = document.createElement("td");
     bottomLevel.align = "center";
-    var txtNode = document.createTextNode("Animation Speed");
+    var txtNode = document.createTextNode("Animation Speed【动画速度】");
     midLevel.appendChild(bottomLevel);
     bottomLevel.appendChild(txtNode);
     newTable.appendChild(midLevel);
@@ -378,12 +378,14 @@ function initCanvas() {
     heightEntry.onkeydown = this.returnSubmit(heightEntry, animationManager.changeSize.bind(animationManager), 4, true);
 
     //	heightEntry.size = 4;
-    sizeButton = addControlToAnimationBar("Button", "Change Canvas Size");
+    //sizeButton = addControlToAnimationBar("Button", "Change Canvas Size【更改画布大小】");
+    sizeButton = addControlToAnimationBar("Button", "更改画布大小");
 
     sizeButton.onclick = animationManager.changeSize.bind(animationManager);
 
 
-    swapButton = addControlToAnimationBar("Button", "Move Controls");
+    //swapButton = addControlToAnimationBar("Button", "Move Controls【移动控件】");
+    swapButton = addControlToAnimationBar("Button", "移动控件");
     swapButton.onclick = swapControlDiv;
 
 

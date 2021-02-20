@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 
 <head>
     <title>
@@ -40,46 +40,48 @@
     </script>
     <script type="text/javascript" src="AlgorithmLibrary/Algorithm.js">
     </script>
-    <script type="text/javascript" src="AlgorithmLibrary/ComparisonSort.js">
+    <script type="text/javascript" src="AlgorithmLibrary/ComparisonSort.js" charset="utf-8">
     </script>
 </head>
 
 <body onload="init();" class="VisualizationMainPage">
 
-    <div id="container">
+<div id="container">
 
-        <div id="header">
-            <h1>Comparison Sorting Algorithms</h1>
+    <div id="header">
+        <!--<h1>Comparison Sorting Algorithms</h1>-->
+        <h1>比较排序可视化</h1>
+    </div>
+
+    <div id="mainContent">
+
+        <div id="algoControlSection">
+            <!-- Table for buttons to control specific animation (insert/find/etc) -->
+            <!-- (filled in by javascript code specific to the animtion) -->
+            <table id="AlgorithmSpecificControls"></table>
+        </div>
+        <!-- Drawing canvas where all animation is done.  Note:  can be resized in code -->
+
+        <canvas id="canvas" width="1000" height="500"></canvas>
+
+        <div id="generalAnimationControlSection">
+            <!-- Table for buttons to control general animation (play/pause/undo/etc)
+                (filled in by javascript code, specifically AnimationMain.js)  -->
+
+            <table id="GeneralAnimationControls"></table>
         </div>
 
-        <div id="mainContent">
-
-            <div id="algoControlSection">
-                <!-- Table for buttons to control specific animation (insert/find/etc) -->
-                <!-- (filled in by javascript code specific to the animtion) -->
-                <table id="AlgorithmSpecificControls"> </table>
-            </div>
-            <!-- Drawing canvas where all animation is done.  Note:  can be resized in code -->
-
-            <canvas id="canvas" width="1000" height="500"></canvas>
-
-            <div id="generalAnimationControlSection">
-                <!-- Table for buttons to control general animation (play/pause/undo/etc) ->
-					<!-- (filled in by javascript code, specifically AnimationMain.js)  -->
-
-                <table id="GeneralAnimationControls"> </table>
-            </div>
-
-
-        </div>
-        <!-- mainContent -->
-
-        <div id="footer">
-            <p><a href="Algorithms.html">Algorithm Visualizations</a></p>
-        </div>
 
     </div>
-    <!-- container -->
+    <!-- mainContent -->
+
+    <div id="footer">
+        <!--<p><a href="Algorithms.html">Algorithm Visualizations</a></p>-->
+        <p><a href="Algorithms.html">算法可视化</a></p>
+    </div>
+
+</div>
+<!-- container -->
 </body>
 
 </html>
