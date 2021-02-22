@@ -69,16 +69,16 @@ StackArray.prototype.addControls = function() {
     this.controls = [];
     this.pushField = addControlToAlgorithmBar("Text", "");
     this.pushField.onkeydown = this.returnSubmit(this.pushField, this.pushCallback.bind(this), 6);
-    this.pushButton = addControlToAlgorithmBar("Button", "Push");
+    this.pushButton = addControlToAlgorithmBar("Button", "Push【压栈】");
     this.pushButton.onclick = this.pushCallback.bind(this);
     this.controls.push(this.pushField);
     this.controls.push(this.pushButton);
 
-    this.popButton = addControlToAlgorithmBar("Button", "Pop");
+    this.popButton = addControlToAlgorithmBar("Button", "Pop【出栈】");
     this.popButton.onclick = this.popCallback.bind(this);
     this.controls.push(this.popButton);
 
-    this.clearButton = addControlToAlgorithmBar("Button", "Clear Stack");
+    this.clearButton = addControlToAlgorithmBar("Button", "Clear Stack【清除堆栈】");
     this.clearButton.onclick = this.clearCallback.bind(this);
     this.controls.push(this.clearButton);
 
@@ -250,7 +250,7 @@ StackArray.prototype.pop = function(ignored) {
     this.cmd("Delete", labPopValID)
     this.cmd("Delete", labPopID);
     this.cmd("Delete", this.highlight1ID);
-    this.cmd("SetText", this.leftoverLabelID, "Popped Value: " + this.arrayData[this.top]);
+    this.cmd("SetText", this.leftoverLabelID, "Popped Value : " + this.arrayData[this.top]);
 
 
 
