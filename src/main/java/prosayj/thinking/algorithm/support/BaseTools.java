@@ -1,4 +1,4 @@
-package prosayj.thinking.algorithm;
+package prosayj.thinking.algorithm.support;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +18,15 @@ public class BaseTools {
      * @param arr 待打印的数组
      */
     public static void printArray(int[] arr) {
+        printArray(Arrays.stream(arr).boxed().toArray(Integer[]::new));
+    }
+
+    /**
+     * 打印数组
+     *
+     * @param arr 待打印的数组
+     */
+    public static void printArray(Integer[] arr) {
         StringBuilder result = new StringBuilder();
         result.append("[");
         for (int i = 0; i < arr.length; i++) {

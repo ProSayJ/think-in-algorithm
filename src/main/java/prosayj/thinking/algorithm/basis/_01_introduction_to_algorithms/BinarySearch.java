@@ -1,4 +1,12 @@
 package prosayj.thinking.algorithm.basis._01_introduction_to_algorithms;
+
+import prosayj.thinking.algorithm.basis._02_bubble_sort.BubbleSort;
+import prosayj.thinking.algorithm.support.BaseTools;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * SelectionSort
  *
@@ -6,7 +14,14 @@ package prosayj.thinking.algorithm.basis._01_introduction_to_algorithms;
  * @version V1.0.0
  */
 public class BinarySearch {
-    private static Integer binarySearch(int[] srcList, int target) {
+    /**
+     * 二分查找
+     *
+     * @param srcList
+     * @param target
+     * @return
+     */
+    private static Integer binarySearch(Integer[] srcList, int target) {
         if (srcList.length == 0) {
             return null;
         }
@@ -15,7 +30,7 @@ public class BinarySearch {
         int lastIndex = srcList.length - 1;
 
         //循环体
-        while (firstIndex <= lastIndex) {
+        while (firstIndex < lastIndex) {
             int middelIndex = (lastIndex + firstIndex) / 2;
             if (target == srcList[middelIndex]) {
                 return middelIndex;
@@ -32,10 +47,9 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        int[] list = {3};
-        // 1
-        System.out.println(binarySearch(list, 3));
-        // null
-        System.out.println(binarySearch(list, -1));
+        List<Integer> integers = BubbleSort.bubbleSort(BaseTools.randomList(15, 10));
+        BaseTools.printArray(integers.toArray(new Integer[0]));
+        System.out.println(binarySearch(integers.toArray(new Integer[0]), 3));
+        System.out.println(binarySearch(integers.toArray(new Integer[0]), 240));
     }
 }

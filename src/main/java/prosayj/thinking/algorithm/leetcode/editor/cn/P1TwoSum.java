@@ -43,12 +43,7 @@
 
 package prosayj.thinking.algorithm.leetcode.editor.cn;
 
-import prosayj.thinking.algorithm.BaseTools;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import prosayj.thinking.algorithm.support.BaseTools;
 
 /**
  * 两数之和:

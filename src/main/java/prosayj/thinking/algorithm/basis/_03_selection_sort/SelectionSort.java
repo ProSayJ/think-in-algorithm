@@ -1,8 +1,7 @@
 package prosayj.thinking.algorithm.basis._03_selection_sort;
 
-import prosayj.thinking.algorithm.BaseTools;
+import prosayj.thinking.algorithm.support.BaseTools;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
