@@ -1,10 +1,8 @@
-package prosayj.thinking.algorithm.basis._01_introduction_to_algorithms;
+package prosayj.thinking.algorithm._01_introduction_to_algorithms;
 
-import prosayj.thinking.algorithm.basis._02_bubble_sort.BubbleSort;
+import prosayj.thinking.algorithm._02_bubble_sort.BubbleSort;
 import prosayj.thinking.algorithm.support.BaseTools;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

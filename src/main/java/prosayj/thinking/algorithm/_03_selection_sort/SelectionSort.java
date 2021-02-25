@@ -1,4 +1,4 @@
-package prosayj.thinking.algorithm.basis._03_selection_sort;
+package prosayj.thinking.algorithm._03_selection_sort;
 
 import prosayj.thinking.algorithm.support.BaseTools;
 
